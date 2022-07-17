@@ -10,7 +10,9 @@ use App\models\image;
 class products extends Model
 {
     use HasFactory;
-    protected $table="products";
+    protected $fillable = [
+        'name', 'regularprice','categoryid'
+    ];
     public function images(){
 
         return $this->morphMany(image::class,'photoable');

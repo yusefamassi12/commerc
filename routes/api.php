@@ -34,3 +34,4 @@ Route::middleware('auth:api')->group( function () {
         Route::resource('products', 'App\Http\Controllers\api\ProductContorller');
     });
 });
+Route::resource('product', 'App\Http\Controllers\api\ProductContorller');
