@@ -35,3 +35,5 @@ Route::middleware('auth:api')->group( function () {
     });
 });
 Route::resource('product', 'App\Http\Controllers\api\ProductContorller');
+Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
+Route::post('/carts/{cart}', 'App\Http\Controllers\api\CartController@addProducts');

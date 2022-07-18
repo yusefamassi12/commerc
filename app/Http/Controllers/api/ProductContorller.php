@@ -7,6 +7,7 @@ use App\Http\Resources\productResource;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreProduct;
 class ProductContorller extends BaseController
 {
     /**
@@ -33,12 +34,13 @@ class ProductContorller extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProduct  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
         //products
+        /*
         $input=$request->all();
         $validator = Validator::make($input, [
             'name' => 'required',
@@ -53,6 +55,8 @@ class ProductContorller extends BaseController
         $product = products::create($input);
 
         return $this->sendResponse(new ProductResource($product), 'Product Created Successfully.');
+*/
+        return "Success";
 
     }
 
