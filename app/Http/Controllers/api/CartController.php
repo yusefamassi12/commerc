@@ -157,7 +157,7 @@ class CartController extends BaseController
      * @return \Illuminate\Http\Response
      * @return void
      */
-    public function addProducts(Cart $cart, Request $request)
+    public function add(Cart $cart, Request $request)
     {
         $validator = Validator::make($request->all(), [
             'cartKey' => 'required',

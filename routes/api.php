@@ -36,4 +36,4 @@ Route::middleware('auth:api')->group( function () {
 });
 Route::resource('product', 'App\Http\Controllers\api\ProductContorller');
 Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
-Route::resource('/cart/{cart}', 'App\Http\Controllers\api\CartController@addProducts');
+Route::post('/cart/{cart}', 'App\Http\Controllers\api\CartController@add');
