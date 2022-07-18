@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -154,6 +154,7 @@ class CartController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Cart  $cart
+     * @return \Illuminate\Http\Response
      * @return void
      */
     public function addProducts(Cart $cart, Request $request)
