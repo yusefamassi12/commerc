@@ -30,8 +30,11 @@ Route::post('register', 'App\Http\Controllers\api\RegisterController@register');
 Route::post('login', 'App\Http\Controllers\api\RegisterController@login');
 
 Route::middleware('auth:api')->group( function () {
-    Route::middleware('auth:api')->group( function () {
         Route::resource('products', 'App\Http\Controllers\api\ProductContorller');
-    });
+        Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
+
 });
+
 Route::resource('product', 'App\Http\Controllers\api\ProductContorller');
+Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
+Route::post('cart', 'App\Http\Controllers\api\CartController@add');
