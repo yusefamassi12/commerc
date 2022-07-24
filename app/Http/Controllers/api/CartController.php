@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Http\Resources\CartItemCollection as CartItemCollection;
 use App\Models\products;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class CartController extends BaseController
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -43,7 +44,7 @@ class CartController extends BaseController
     public function store(Request $request)
     {
         if (Auth::guard('api')->check()) {
-            $userID = auth('api')->user()->getKey();
+            $userID = auth('api')->user()->getkey();
 
         }
 
@@ -56,6 +57,7 @@ class CartController extends BaseController
             'Message' => 'A new cart have been created for you!',
             'cartToken' => $cart->id,
             'cartKey' => $cart->key,
+            'userid'=>$cart->userID
         ], 201);
     }
 

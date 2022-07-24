@@ -29,12 +29,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'App\Http\Controllers\api\RegisterController@register');
 Route::post('login', 'App\Http\Controllers\api\RegisterController@login');
 
-Route::middleware('auth:api')->group( function () {
+Route::group([
+    'middleware'=>'api',
+    'prefix'=>'auth'
+], function () {
         Route::resource('products', 'App\Http\Controllers\api\ProductContorller');
+        Route::post('product1', 'App\Http\Controllers\api\ProductContorller@store');
         Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
-
+        Route::post('cart', 'App\Http\Controllers\api\CartController@add');
 });
 
 Route::resource('product', 'App\Http\Controllers\api\ProductContorller');
-Route::apiResource('carts', 'App\Http\Controllers\api\CartController');
-Route::post('cart', 'App\Http\Controllers\api\CartController@add');
+//Route::apiResource('carts', 'App\Http\Controllers\api\CartController');

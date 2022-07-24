@@ -7,20 +7,37 @@ use App\Http\Resources\productResource;
 use App\Models\products;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProduct;
+use League\Uri\Http;
+use phpDocumentor\Reflection\Types\Resource_;
+use App\Http\Resources\Pagination;
+
 class ProductContorller extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $product=products::all();
-        return $this->sendresponse(productResource::collection($product),'Products Retrieved Successfully.');
+        $products= ProductResource::collection($product);
+
+
+        return $this->sendResponse( [
+            $paginate=new Paginator($products,5)
+        ], 200);
+
+
+       /* return $this->sendResponse([
+            'products' => ProductResource::collection($product),
+           // $paginate
+        ],'your prodcut retivered sucsessfully');*/
+
     }
 
     /**
@@ -42,7 +59,7 @@ class ProductContorller extends BaseController
     public function store(StoreProduct $request)
     {
         //products
-        /*
+/*
         $input=$request->all();
         $validator = Validator::make($input, [
             'name' => 'required',
@@ -53,12 +70,12 @@ class ProductContorller extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
-
+*/      $input=$request->all();
         $product = products::create($input);
 
         return $this->sendResponse(new ProductResource($product), 'Product Created Successfully.');
-*/
-        return "Success";
+
+//        return "Success";
 
     }
 

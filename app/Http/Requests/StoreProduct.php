@@ -6,7 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Http\Controllers\api\BaseController;
+use App\Http\Controllers\api\ProductContorller;
 class StoreProduct extends FormRequest
 {
     /**
@@ -16,7 +18,12 @@ class StoreProduct extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if (Auth::guard('api')) {
+            return true;
+    }
+       else{
+           return false;
+       }
     }
 
     /**
